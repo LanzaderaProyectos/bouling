@@ -42,6 +42,7 @@ class BouliFactory extends Factory
         $tomorrow = $now->add(1, 'day');
 
         return [
+            'name' => fake()->unique()->safeColorName(),
             'key_value' => fake()->unique()->company(),
             'description' => fake()->sentence(20),
             'social_network' => 'Instagram',

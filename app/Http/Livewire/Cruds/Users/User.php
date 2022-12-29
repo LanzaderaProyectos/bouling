@@ -67,7 +67,6 @@ class User extends Component
 
     public function mount()
     {
-        $this->users = ModelsUser::all();
     }
 
     public function save()

@@ -16,6 +16,7 @@ class Brand extends Component
     public $brandId;
     public $search = '';
 
+
     public $openFlash = false;
 
     public $showDeleteModal = false;
@@ -56,8 +57,9 @@ class Brand extends Component
 
         if ($this->brandId != '') {
             $this->brandId = ModelsBrand::findOrFail($this->userId);
-            dd($this->brandId);
         }
+
+
 
         return view('livewire.cruds.brands.brand', [
             'brands' => $data->orderBy('name')->paginate($this->entries)
@@ -66,6 +68,7 @@ class Brand extends Component
 
     public function save()
     {
+
         $this->validate();
         $this->brand->save();
         $this->resetInputs();
@@ -79,6 +82,7 @@ class Brand extends Component
         $this->showSaveModal = false;
         $this->showDeleteModal = false;
         $this->brand = new ModelsBrand();
+
     }
 
     public function addNew()

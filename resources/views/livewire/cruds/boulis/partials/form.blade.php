@@ -20,89 +20,169 @@
                                     for="grid-name">
                                     Name
                                 </label>
-                                <input wire:model.defer="brand.name"
+                                <input wire:model.defer="bouli.name"
                                     class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                     id="grid-name" type="name" placeholder="Name">
                             </div>
                             <div class="w-full md:w-1/2 px-3">
                                 <label class="block uppercase -wide text-gray-700 text-xs font-bold mb-2"
-                                    for="grid-legal-name">
-                                    Legal name
-                                </label>
-                                <input wire:model.defer="brand.legal_name"
-                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-legal-name" type="text" placeholder="Legal name">
-                            </div>
-                        </div>
-                        <div class="flex flex-wrap  -mx-3 mb-6">
-                            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    for="grid-email">
-                                    Email
-                                </label>
-                                <input wire:model.defer="brand.email"
-                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-email" type="email" placeholder="Email">
-                            </div>
-                            <div class="w-full md:w-1/2 px-3">
-                                <label class="block uppercase -wide text-gray-700 text-xs font-bold mb-2"
                                     for="grid-phone">
-                                    Phone number
+                                    Key value
                                 </label>
-                                <input wire:model.defer="brand.phone"
+                                <input wire:model.defer="bouli.key_value"
                                     class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                     id="grid-phone" type="phone" placeholder="Phone number">
                             </div>
                         </div>
                         <div class="flex flex-wrap -mx-3 mb-6">
-                            <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    for="grid-country">
-                                    Country
+                                    for="grid-description">
+                                    Description
                                 </label>
-                                <input wire:model.defer="brand.country"
+                                <input wire:model.defer="bouli.description"
                                     class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-country" type="text" placeholder="Country">
+                                    id="grid-description" type="text" placeholder="Description">
                             </div>
-                            <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+
+                            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    for="grid-city">
-                                    City
+                                    for="grid-requirement">
+                                    Requirement
                                 </label>
-                                <input wire:model.defer="brand.city"
+                                <input wire:model.defer="bouli.requirement"
                                     class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-city" type="text" placeholder="City">
+                                    id="grid-requirement" type="text" placeholder="Requirement">
                             </div>
-                            <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    for="grid-state">
-                                    State
-                                </label>
-                                <input wire:model.defer="brand.state"
-                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-state" type="text" placeholder="State">
-                            </div>
-                            <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    for="grid-address">
-                                    Address
-                                </label>
-                                <input wire:model.defer="brand.address"
-                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-address" type="text" placeholder="Address">
-                            </div>
+
                         </div>
                         <div class="flex flex-wrap -mx-3 mb-6">
-                            <div class="w-full md:w-2/2 px-3 mb-6 md:mb-0">
+                            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    for="grid-postal-code">
-                                    Postal code
+                                    for="grid-reward">
+                                    Reward
                                 </label>
-                                <input wire:model.defer="brand.postal_code"
+                                <input wire:model.defer="bouli.reward"
                                     class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-postal-code" type="text" placeholder="Postal code">
+                                    id="grid-reward" type="text" placeholder="Reward">
+                            </div>
+                            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                    for="grid-brands">
+                                    Condition
+                                </label>
+                                <div class="relative">
+                                    <select wire:model="condition"
+                                        class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                        id="grid-brands">
+                                        <option value="">Select a condition</option>
+                                        <option value="0">Free admision</option>
+                                        <option value="1">Has to be accepted</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
+
+                        <div class="flex flex-wrap -mx-3 mb-6">
+                            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                    for="grid-date_start">
+                                    Date start
+                                </label>
+                                <input wire:model.defer="bouli.date_start"
+                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    id="grid-date_start" type="date" placeholder="Date start">
+                            </div>
+                            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                    for="grid-date_finish">
+                                    Date finish
+                                </label>
+                                <input wire:model.defer="bouli.date_finish"
+                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    id="grid-date_finish" type="date" placeholder="Date finish">
+                            </div>
+                        </div>
+                        @if (!$new)
+                            <div class="flex flex-wrap -mx-3 mb-6">
+                                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                        for="grid-brands">
+                                        Social network
+                                    </label>
+                                    <div
+                                        class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                                        {{ $bouli->social_network }}
+                                    </div>
+                                </div>
+
+                                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                        for="grid-brands">
+                                        Brand bouli
+                                    </label>
+                                    <div
+                                        class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                                        {{ $bouli->brand->legal_name }}
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                        <div class="block">
+
+                            <div class="uppercase bold mb-1">
+                                <h2>Change options</h2>
+                            </div>
+                            <div class="flex flex-wrap -mx-3 mb-6">
+                                <div class="w-full flex justify-around md:w-1/2 px-3">
+                                    <div>
+                                        <label class="block uppercase -wide text-gray-700 text-xs font-bold mb-2"
+                                            for="grid-social-network-instagram">
+                                            Instagram
+                                        </label>
+                                        <input id="grid-social-network-instagram" name="social_network"
+                                            wire:model="social_network" value="instagram" type="radio">
+                                    </div>
+                                    <div class="">
+                                        <label class="block uppercase -wide text-gray-700 text-xs font-bold mb-2"
+                                            for="grid-social-network-instagram">
+                                            TikTok
+                                        </label>
+                                        <input id="grid-social-network-tiktok" name="social_network"
+                                            wire:model="social_network" value="tiktok" type="radio">
+                                    </div>
+                                    <div>
+                                        <label class="block uppercase -wide text-gray-700 text-xs font-bold mb-2"
+                                            for="grid-social-network-tiktok">
+                                            Facebook
+                                        </label>
+                                        <input id="grid-social-network-facebook" name="social_network"
+                                            wire:model="social_network" value="facebook" type="radio">
+                                    </div>
+
+                                </div>
+
+                                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                        for="grid-brands">
+                                        Brand bouli
+                                    </label>
+                                    <div class="relative">
+                                        <select wire:model="brandId"
+                                            class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                            id="grid-brands">
+                                            <option value="">Select brand</option>
+                                            @foreach ($brands as $brand)
+                                                <option value="{{ $brand->id }}">{{ $brand->legal_name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
                         <div
                             class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-between p-4 border-t border-gray-200 rounded-b-md">
                             <div>
