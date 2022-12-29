@@ -1,0 +1,1 @@
+<script>alert('This endpoint not found')</script>
