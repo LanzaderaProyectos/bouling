@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('boulis', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('name');
+            $table->string('name');
             $table->string('key_value')->unique();
             $table->string('description');
             $table->string('social_network');

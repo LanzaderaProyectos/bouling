@@ -103,7 +103,7 @@
                                     id="grid-date_finish" type="date" placeholder="Date finish">
                             </div>
                         </div>
-                        @if (!$new)
+                        @if (!$new && $search == '')
                             <div class="flex flex-wrap -mx-3 mb-6">
                                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -134,6 +134,7 @@
                                 <h2>Change options</h2>
                             </div>
                             <div class="flex flex-wrap -mx-3 mb-6">
+
                                 <div class="w-full flex justify-around md:w-1/2 px-3">
                                     <div>
                                         <label class="block uppercase -wide text-gray-700 text-xs font-bold mb-2"
@@ -162,23 +163,27 @@
 
                                 </div>
 
-                                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                        for="grid-brands">
-                                        Brand bouli
-                                    </label>
-                                    <div class="relative">
-                                        <select wire:model="brandId"
-                                            class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                            id="grid-brands">
-                                            <option value="">Select brand</option>
-                                            @foreach ($brands as $brand)
-                                                <option value="{{ $brand->id }}">{{ $brand->legal_name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
+                                @if (Auth::user()->hasRole('super_admin'))
+                                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                        <label
+                                            class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                            for="grid-brands">
+                                            Brand bouli
+                                        </label>
+                                        <div class="relative">
+                                            <select wire:model="brandId"
+                                                class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                                id="grid-brands">
+                                                <option value="">Select brand</option>
+                                                @foreach ($brands as $brand)
+                                                    <option value="{{ $brand->id }}">{{ $brand->legal_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
+                                @endif
+
                             </div>
 
                         </div>

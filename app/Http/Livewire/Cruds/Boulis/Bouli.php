@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Cruds\Boulis;
 use App\Models\Bouli as ModelsBouli;
 use App\Models\Brand;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -53,7 +54,17 @@ class Bouli extends Component
 
     public function render()
     {
-        $data = ModelsBouli::select('*');
+
+
+        if (Auth::user()->hasRole('super_admin') || Auth::user()->hasRole('bouliner')) {
+            $data = ModelsBouli::select('*');
+            if ($this->brandId != '') {
+                $this->brand = Brand::findOrFail($this->brandId);
+            }
+        } else if (Auth::user()->hasRole('brand')) {
+            $this->brand = Brand::findOrFail(Auth::user()->brand_id);
+            $data = ModelsBouli::select('*')->where('brand_id', $this->brand->id);
+        }
         if ($this->search != '') {
             $search = '%' . $this->search . '%';
             $data->where(function ($q) use ($search) {
@@ -64,12 +75,7 @@ class Bouli extends Component
                     ->orWhere('reward', 'like', $search);
             });
         }
-
-        if ($this->brandId != '') {
-            $this->brand = Brand::findOrFail($this->brandId);
-        }
-
-
+        
         return view('livewire.cruds.boulis.bouli', [
             'boulis' => $data->orderBy('name')->paginate($this->entries)
         ]);
@@ -121,9 +127,11 @@ class Bouli extends Component
         $this->showSaveModal = false;
         $this->showDeleteModal = false;
         $this->openFlash = false;
-        $this->bouli = new ModelsBouli();
-        $this->brandId = null;
-        $this->brand = null;
+        if (Auth::user()->hasRole('super_admin')) {
+            $this->bouli = new ModelsBouli();
+            $this->brandId = null;
+            $this->brand = null;
+        }
         $this->social_network = 'instagram';
         $this->condition = null;
         $this->new = false;

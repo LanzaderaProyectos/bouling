@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Cruds\Users;
 
-use App\Models\Account;
+use App\Models\Brand;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -24,15 +24,6 @@ class UserEdit extends Component
         'user.name' => 'required',
         'user.email' => 'required|email',
         'user.phone' => 'required',
-        'user.timezone' => 'required',
-        'user.date_format' => 'required',
-        'user.decimals_number'  => 'required',
-        'user.decimals_pointer'  => 'required',
-        'user.thousands_pointer'  => 'required',
-        'user.default_locale' => 'nullable',
-        'user.personal_email' => 'nullable',
-        'user.personal_phone' => 'nullable',
-        'user.personal_address' => 'nullable',
     ];
     public function render()
     {
@@ -44,7 +35,6 @@ class UserEdit extends Component
     {
         $this->user = Auth::user();
         $this->roles = Role::all();
-        $this->accounts = Account::all();
     }
 
     public function resetInputs()

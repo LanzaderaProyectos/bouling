@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Cruds\Brands;
 
 use App\Models\Brand as ModelsBrand;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -40,30 +41,31 @@ class Brand extends Component
     public function render()
     {
 
-        $data = ModelsBrand::select('*');
-        if ($this->search != '') {
-            $search = '%' . $this->search . '%';
-            $data->where(function ($q) use ($search) {
-                $q->where('name', 'like', $search)
-                    ->orWhere('email', 'like', $search)
-                    ->orWhere('phone', 'like', $search)
-                    ->orWhere('legal_name', 'like', $search)
-                    ->orWhere('state', 'like', $search)
-                    ->orWhere('country', 'like', $search)
-                    ->orWhere('postal_code', 'like', $search)
-                    ->orWhere('city', 'like', $search);
-            });
+        if (Auth::user()->hasRole('super_admin') || Auth::user()->hasRole('bouliner')) {
+            $data = ModelsBrand::select('*');
+            if ($this->brandId != '') {
+                $this->brand = ModelsBrand::findOrFail($this->brandId);
+            }
+            if ($this->search != '') {
+                $search = '%' . $this->search . '%';
+                $data->where(function ($q) use ($search) {
+                    $q->where('name', 'like', $search)
+                        ->orWhere('email', 'like', $search)
+                        ->orWhere('phone', 'like', $search)
+                        ->orWhere('legal_name', 'like', $search)
+                        ->orWhere('state', 'like', $search)
+                        ->orWhere('country', 'like', $search)
+                        ->orWhere('postal_code', 'like', $search)
+                        ->orWhere('city', 'like', $search);
+                });
+            }
+            return view('livewire.cruds.brands.all-brands', [
+                'brands' => $data->orderBy('name')->paginate($this->entries)
+            ]);
+        } else if (Auth::user()->hasRole('brand')) {
+            $this->brand = ModelsBrand::find(Auth::user()->brand_id);
+            return view('livewire.cruds.brands.my-brand');
         }
-
-        if ($this->brandId != '') {
-            $this->brandId = ModelsBrand::findOrFail($this->userId);
-        }
-
-
-
-        return view('livewire.cruds.brands.brand', [
-            'brands' => $data->orderBy('name')->paginate($this->entries)
-        ]);
     }
 
     public function save()
@@ -74,7 +76,9 @@ class Brand extends Component
         $this->resetInputs();
         $this->openFlash = true;
         session()->flash('save-message', 'Country successfully saved');
-
+        if (Auth::user()->hasRole('brand')) {
+            $this->render();
+        }
     }
 
     public function resetInputs()
@@ -82,17 +86,15 @@ class Brand extends Component
         $this->showSaveModal = false;
         $this->showDeleteModal = false;
         $this->brand = new ModelsBrand();
-
     }
 
     public function addNew()
     {
         $this->resetInputs();
         $this->showSaveModal = true;
-
     }
 
-    public function editOrDelete($id = null,$data)
+    public function editOrDelete($id = null, $data)
     {
         $this->resetInputs();
         if ($id != null) {

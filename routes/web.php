@@ -30,15 +30,11 @@ Route::middleware('auth')->group(function () {
     // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/profile', [CrudController::class, 'userEdit'])->name('profile');
-    Route::middleware('roles:admin')->group(
-        function () {
-            Route::get('/user', [CrudController::class, 'user'])->name('user.index');
-            Route::get('/roles', [CrudController::class, 'role'])->name('role.index');
-            Route::get('/brands', [CrudController::class, 'brand'])->name('brand.index');
-            Route::get('/boulis', [CrudController::class, 'bouli'])->name('bouli.index');
-        }
-    );
 
+    Route::get('/roles', [CrudController::class, 'role'])->middleware('roles:super_admin')->name('role.index');
+    Route::get('/user', [CrudController::class, 'user'])->name('user.index');
+    Route::get('/brands', [CrudController::class, 'brand'])->name('brand.index');
+    Route::get('/boulis', [CrudController::class, 'bouli'])->name('bouli.index');
 });
 
 require __DIR__ . '/auth.php';
