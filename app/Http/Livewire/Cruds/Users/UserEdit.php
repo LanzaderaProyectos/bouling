@@ -14,6 +14,8 @@ class UserEdit extends Component
 
 
     public ?User $user;
+    public ?Brand $brand;
+
 
     public $password;
     public $confirmPassword;
@@ -34,7 +36,7 @@ class UserEdit extends Component
     public function mount()
     {
         $this->user = Auth::user();
-        $this->roles = Role::all();
+        $this->brand = Brand::find($this->user->brand_id);
     }
 
     public function resetInputs()
