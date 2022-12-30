@@ -6,7 +6,7 @@
             @elseif(Auth::user()->hasRole('bouliner'))
                 {{ __('Available boulis') }}
             @else
-                {{ __('Brands management') }}
+                {{ __('Boulis management') }}
             @endif
         </h2>
     </x-slot>
