@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Cruds\Users;
 
+use App\Models\Role;
 use App\Models\User as ModelsUser;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -13,6 +14,9 @@ class User extends Component
 
     public $openFlash = false;
 
+    public ?Role $role;
+
+    public $roleId;
 
     public ?ModelsUser $user;
 
@@ -23,8 +27,6 @@ class User extends Component
 
     public $showDeleteModal = false;
     public $showSaveModal = false;
-
-
 
     public $confirmDeleteId;
     public $entries = 5;
@@ -50,7 +52,11 @@ class User extends Component
 
 
         if ($this->userId != '') {
-            $this->user = User::findOrFail($this->UserId);
+            $this->user = User::findOrFail($this->userId);
+        }
+
+        if ($this->roleId != '') {
+            $this->role = Role::findOrFail($this->roleId);
         }
 
 
@@ -67,6 +73,7 @@ class User extends Component
 
     public function mount()
     {
+        $this->roles = Role::all();
     }
 
     public function save()
@@ -142,7 +149,6 @@ class User extends Component
             }
         }
     }
-
     public function delete()
     {
         $this->user->delete();
@@ -151,4 +157,13 @@ class User extends Component
         $this->openFlash = true;
     }
 
+    public function deleteRole($userId, $roleId)
+    {
+        $this->resetInputs();
+        $user = ModelsUser::findOrFail($userId);
+        $role = Role::findOrFail($roleId);
+        $user->roles()->detach($roleId);
+        $this->openFlash = true;
+        session()->flash('delete-message', $user->name . "'s " . $role->key_value . " role successfully deleted");
+    }
 }

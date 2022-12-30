@@ -66,6 +66,7 @@
                                 <th style="width: 10%">Name</th>
                                 <th style="width: 10%">Email</th>
                                 <th style="width: 10%">Phone</th>
+                                <th style="width: 10%">Roles</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -108,6 +109,26 @@
                                     </td>
                                     <td class="border px-4 py-2">{{ $user->email ?? '' }}</td>
                                     <td class="border px-4 py-2">{{ $user->phone ?? '' }}</td>
+                                    <td class="border px-4 py-2">
+                                        <div class="overflow-x-auto text-center">
+                                            @foreach ($user->roles as $role)
+                                                <div
+                                                    class="bg-teal-300 rounded-lg mt-1 mp-1 p-1 flex justify-between">
+                                                    <div>
+                                                        {{ $role->key_value }}
+                                                    </div>
+                                                    <div>
+                                                        <button
+                                                            wire:click="deleteRole('{{ $user->id }}', '{{ $role->id }}')"
+                                                            type="button" class="close" data-dismiss="alert"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
