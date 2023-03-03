@@ -1,11 +1,8 @@
 <div>
-    {{-- Success is as dangerous as failure. --}}
-    <h1>HOLAA</h1>
-
     <div
         class="modal-content p-5 border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
         <div class="flex flex-wrap  -mx-3 mb-6">
-            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <div class="w-full px-3 @if (isset($bouli->id)) md:w-1/2 @else md:w-2/2 @endif mb-6 md:mb-0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-name">
                     Name
                 </label>
@@ -23,8 +20,13 @@
                         id="grid-phone" type="phone" placeholder="Phone number">
                 </div>
             @endif
-            @if (!isset($bouli->id) && isset($brands))
-                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        </div>
+
+
+        @if (!isset($bouli->id) && isset($brands) && Auth::user()->hasRole('super_admin'))
+
+            <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full md:w-2/2 px-3 mb-6 md:mb-0">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-brands">
                         Brands
                     </label>
@@ -34,16 +36,17 @@
                             id="grid-brands">
                             <option value="">Select an option</option>
                             @foreach ($brands as $brand)
-                            <option value="{{$brand->id}}">{{$brand->name}}</option>
+                                <option value="{{ $brand->id }}">{{ $brand->name }}</option>
                             @endforeach
                         </select>
                     </div>
                 </div>
-            @endif
+            </div>
+        @endif
 
-        </div>
+
         <div class="flex flex-wrap -mx-3 mb-6">
-            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <div class="w-full md:w-2/2 px-3 mb-6 md:mb-0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                     for="grid-description">
                     Description
@@ -52,8 +55,10 @@
                     class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     id="grid-description" type="text" placeholder="Description">
             </div>
+        </div>
 
-            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full md:w-2/2 px-3 mb-6 md:mb-0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                     for="grid-requirement">
                     Requirement
@@ -62,10 +67,10 @@
                     class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     id="grid-requirement" type="text" placeholder="Requirement">
             </div>
-
         </div>
+
         <div class="flex flex-wrap -mx-3 mb-6">
-            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <div class="w-full md:w-2/2 px-3 mb-6 md:mb-0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-reward">
                     Reward
                 </label>
@@ -73,7 +78,11 @@
                     class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     id="grid-reward" type="text" placeholder="Reward">
             </div>
-            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        </div>
+
+
+        <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full md:w-2/2 px-3 mb-6 md:mb-0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-brands">
                     Condition
                 </label>
@@ -109,36 +118,34 @@
             </div>
         </div>
         @if (isset($bouli->id))
-        <div class="flex flex-wrap -mx-3 mb-6">
-            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    for="grid-brands">
-                    Social network
-                </label>
-                <div
-                    class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-                    {{ $bouli->social_network }}
+            <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-brands">
+                        Social network
+                    </label>
+                    <div
+                        class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                        {{ $bouli->social_network }}
+                    </div>
                 </div>
-            </div>
 
-            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    for="grid-brands">
-                    Brand bouli
-                </label>
-                <div
-                    class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-                    {{ $bouli->brand->legal_name }}
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-brands">
+                        Brand bouli
+                    </label>
+                    <div
+                        class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                        {{ $bouli->brand->legal_name }}
+                    </div>
                 </div>
             </div>
-        </div>
-    @endif
+        @endif
         <div class="block">
 
-            <div class="uppercase bold mb-1">
+            <div class="uppercase bold mb-1 text-center">
                 <h2>Change options</h2>
             </div>
-            <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="flex flex-wrap justify-around -mx-3 mb-6">
 
                 <div class="w-full flex justify-around md:w-1/2 px-3">
                     <div>
@@ -146,48 +153,27 @@
                             for="grid-social-network-instagram">
                             Instagram
                         </label>
-                        <input id="grid-social-network-instagram" name="social_network" wire:model.defer="bouli.social_network"
-                            value="instagram" type="radio">
+                        <input id="grid-social-network-instagram" name="social_network"
+                            wire:model.defer="bouli.social_network" value="instagram" type="radio">
                     </div>
                     <div class="">
                         <label class="block uppercase -wide text-gray-700 text-xs font-bold mb-2"
                             for="grid-social-network-instagram">
                             TikTok
                         </label>
-                        <input id="grid-social-network-tiktok" name="social_network" wire:model.defer="bouli.social_network"
-                            value="tiktok" type="radio">
+                        <input id="grid-social-network-tiktok" name="social_network"
+                            wire:model.defer="bouli.social_network" value="tiktok" type="radio">
                     </div>
                     <div>
                         <label class="block uppercase -wide text-gray-700 text-xs font-bold mb-2"
                             for="grid-social-network-tiktok">
                             Facebook
                         </label>
-                        <input id="grid-social-network-facebook" name="social_network" wire:model.defer="bouli.social_network"
-                            value="facebook" type="radio">
+                        <input id="grid-social-network-facebook" name="social_network"
+                            wire:model.defer="bouli.social_network" value="facebook" type="radio">
                     </div>
 
                 </div>
-
-                @if (Auth::user()->hasRole('super_admin'))
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                            for="grid-brands">
-                            Brand bouli
-                        </label>
-                        <div class="relative">
-                            <select wire:model.defer="brandId"
-                                class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="grid-brands">
-                                <option value="">Select brand</option>
-                                @foreach ($brands as $brand)
-                                    <option value="{{ $brand->id }}">{{ $brand->legal_name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                @endif
-
             </div>
 
         </div>
@@ -195,7 +181,7 @@
         <div
             class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-between p-4 border-t border-gray-200 rounded-b-md">
             <div>
-                <x-secondary-button wire:click="resetInputs()">
+                <x-secondary-button wire:click="cancel()">
                     {{ __('Cancel') }}
                 </x-secondary-button>
             </div>

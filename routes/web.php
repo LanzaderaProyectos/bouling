@@ -35,7 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/user', [CrudController::class, 'user'])->name('user.index');
     Route::get('/brands', [CrudController::class, 'brand'])->name('brand.index');
     Route::get('/boulis', [CrudController::class, 'bouli'])->name('bouli.index');
-    Route::get('/bouli/{bouli?}', [CrudController::class, 'editOrCreateBouli'])->name('bouli.edit-or-create');
+    Route::get('/bouli/{bouli?}/{brand?}', [CrudController::class, 'editOrCreateBouli'])->name('bouli.edit-or-create');
 
 });
 

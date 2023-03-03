@@ -75,7 +75,7 @@ class Bouli extends Component
                     ->orWhere('reward', 'like', $search);
             });
         }
-        
+
         return view('livewire.cruds.boulis.bouli', [
             'boulis' => $data->orderBy('name')->paginate($this->entries)
         ]);
@@ -90,6 +90,10 @@ class Bouli extends Component
     public function mount()
     {
         $this->brands = Brand::all();
+    }
+
+    public function saved(){
+        dd('funciona');
     }
 
     public function save()

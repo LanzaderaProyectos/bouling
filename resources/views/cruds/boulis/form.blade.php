@@ -10,7 +10,8 @@
     </x-slot>
     <x-slot name="slot">
         @livewire('cruds.boulis.bouli-form', [
-            'bouli' => $bouli
+            'bouli' => $bouli,
+            'brand' => $brand
         ])
     </x-slot>
 </x-app-layout>

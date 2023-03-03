@@ -32,9 +32,10 @@ class CrudController extends Controller
         return view('cruds.boulis.index');
     }
 
-    public function editOrCreateBouli($bouli = null){
+    public function editOrCreateBouli($bouli = null, $brand = null){
         return view('cruds.boulis.form', [
-            'bouli' => $bouli
+            'bouli' => $bouli,
+            'brand' => $brand
         ]);
     }
 }

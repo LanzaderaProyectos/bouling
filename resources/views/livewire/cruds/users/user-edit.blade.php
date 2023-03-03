@@ -88,23 +88,6 @@
                     id="grid-confirm-password" type="password" placeholder="*******">
             </div>
         </div>
-        <div class="flex flex-wrap -mx-3 mb-6">
-            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    for="grid-personal_email">
-                    Roles
-                </label>
-                <div class="flex appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="grid-personal_email">
-
-                    @foreach ($user->roles as $role)
-                        <div>
-                            {{ $role->key_value }}
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
 
         <div
             class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-between p-4 border-t border-gray-200 rounded-b-md">
