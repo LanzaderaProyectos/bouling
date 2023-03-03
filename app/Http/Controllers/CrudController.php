@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bouli;
 use Illuminate\Http\Request;
 
 class CrudController extends Controller
@@ -29,5 +30,12 @@ class CrudController extends Controller
     public function bouli()
     {
         return view('cruds.boulis.index');
+    }
+
+    public function editOrCreateBouli($bouli = null, $brand = null){
+        return view('cruds.boulis.form', [
+            'bouli' => $bouli,
+            'brand' => $brand
+        ]);
     }
 }
