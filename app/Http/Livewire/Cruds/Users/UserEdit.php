@@ -51,6 +51,7 @@ class UserEdit extends Component
 
     public function changePassword()
     {
+        $this->openFlash = true;
         if ((password_verify($this->currentPassword, (Auth::user()->password)))) {
             if (($this->changePassword != '' || $this->changePassword != null)) {
                 if ($this->changePassword == $this->confirmPassword) {
@@ -58,8 +59,6 @@ class UserEdit extends Component
                     $this->user->password = Hash::make($this->changePassword);
                     $this->user->save();
                     session()->flash('save-message', 'User successfully updated');
-                    $this->resetInputs();
-                    $this->render();
                 } else {
                     session()->flash('error-message', 'The new password has not been successfully verified');
                 }
@@ -71,6 +70,9 @@ class UserEdit extends Component
                 }
             }
         }
+
+        $this->resetInputs();
+        $this->render();
     }
 
     public function save()
