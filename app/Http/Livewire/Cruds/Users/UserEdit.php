@@ -6,6 +6,7 @@ use App\Models\Brand;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 
 class UserEdit extends Component
@@ -17,7 +18,8 @@ class UserEdit extends Component
     public ?Brand $brand;
 
 
-    public $password;
+    public $currentPassword;
+    public $changePassword;
     public $confirmPassword;
 
     public $showDeleteModal = false;
@@ -41,9 +43,34 @@ class UserEdit extends Component
 
     public function resetInputs()
     {
-        $this->showDeleteModal = false;
-        $this->password = null;
-        $this->confirmPassword = null;
+        $this->showDeleteModal  = false;
+        $this->currentPassword  = null;
+        $this->changePassword   = null;
+        $this->confirmPassword  = null;
+    }
+
+    public function changePassword()
+    {
+        if ((password_verify($this->currentPassword, (Auth::user()->password)))) {
+            if (($this->changePassword != '' || $this->changePassword != null)) {
+                if ($this->changePassword == $this->confirmPassword) {
+                    $this->user = User::find($this->user->id);
+                    $this->user->password = Hash::make($this->changePassword);
+                    $this->user->save();
+                    session()->flash('save-message', 'User successfully updated');
+                    $this->resetInputs();
+                    $this->render();
+                } else {
+                    session()->flash('error-message', 'The new password has not been successfully verified');
+                }
+            }
+        } else {
+            if ($this->currentPassword != null || $this->currentPassword != '') {
+                if (($this->changePassword != '' || $this->changePassword != null)) {
+                    session()->flash('error-message', 'Password not updated, the original password is incorrect');
+                }
+            }
+        }
     }
 
     public function save()
@@ -54,18 +81,10 @@ class UserEdit extends Component
         }
         $this->validate();
 
-        if ($this->password != null) {
-            if ($this->password == $this->confirmPassword) {
-                $this->user->password = bcrypt($this->password);
-                $this->user->save();
-                session()->flash('save-message', 'User successfully updated');
-            } else {
-                session()->flash('error-message', 'Password does not match');
-            }
-        } else {
-            $this->user->save();
-            session()->flash('save-message', 'User successfully updated');
-        }
+
+        $this->user->save();
+        session()->flash('save-message', 'User successfully updated');
+
         if (isset($this->role)) {
             $this->user->roles()->attach($this->role->id);
         }
