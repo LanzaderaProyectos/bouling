@@ -52,7 +52,7 @@
 
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
-            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <div class="w-full md:w-2/2 px-3 mb-6 md:mb-0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-email">
                     Email
                 </label>
@@ -60,22 +60,14 @@
                     class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     id="grid-email" type="email" placeholder="Email">
             </div>
-            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    for="grid-personal_email">
-                    Brand
-                </label>
-                <div class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="grid-personal_email">{{ $brand->legal_name ?? '' }}</div>
-            </div>
         </div>
 
         <div
             class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-between p-4 border-t border-gray-200 rounded-b-md">
             <div>
-                <x-danger-button wire:click="openDeleteModal()">
+                <x-confirm-delete wire:click="openDeleteModal()">
                     {{ __('Delete') }}
-                </x-danger-button>
+                </x-confirm-delete>
             </div>
 
             <div>
@@ -131,7 +123,7 @@
 
 
             </div>
-            @include('partials.delete-confirmation')
+            {{-- @include('partials.delete-confirmation') --}}
 
         </div>
     </div>

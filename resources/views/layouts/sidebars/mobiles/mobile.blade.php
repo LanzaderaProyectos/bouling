@@ -14,6 +14,7 @@
     <div   class="fixed inset-0 z-40 flex">
         <div
             x-show="menuMobile"
+            @click.outside="menuMobile = false"
             x-transition:enter="transition ease-in-out duration-300 transform"
             x-transition:enter-start="-translate-x-full"
             x-transition:enter-end="translate-x-0"

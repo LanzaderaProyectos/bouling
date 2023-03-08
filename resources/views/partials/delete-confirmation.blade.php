@@ -47,12 +47,12 @@
                                     {{ __('Cancel') }}
                                 </x-slot>
                             </x-secondary-button>
-                            <x-danger-button wire:click="delete()"
+                            <x-confirm-delete wire:click="delete()"
                                 class="px-2">
                                 <x-slot name="slot">
                                     {{ __('Confirm') }}
                                 </x-slot>
-                            </x-danger-button>
+                            </x-confirm-delete>
                         </div>
                     </div>
 
